@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk = 30
+    compileSdk = AndroidBuildConfig.compileSdk
 
     defaultConfig {
         applicationId = "com.kurantsov.moviesapp"
-        minSdk = 21
-        targetSdk = 30
+        minSdk = AndroidBuildConfig.minSdk
+        targetSdk = AndroidBuildConfig.targetSdk
         versionCode = 1
         versionName = "1.0"
 
@@ -19,7 +19,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -33,10 +36,14 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.3.2")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("com.google.android.material:material:1.3.0")
-    testImplementation("junit:junit:4.+")
-    androidTestImplementation("androidx.test.ext:junit:1.1.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+    implementation(KotlinDependencies.kotlin)
+    implementation(KotlinDependencies.kotlinCoroutinesAndroid)
+
+    implementation(AndroidXDependencies.coreKtx)
+    implementation(AndroidXDependencies.appCompat)
+    implementation(AndroidMaterialDependencies.material)
+
+    testImplementation(TestDependencies.jUnit)
+    androidTestImplementation(AndroidTestDependencies.jUnit)
+    androidTestImplementation(AndroidTestDependencies.espresso)
 }
